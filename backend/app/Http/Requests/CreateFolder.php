@@ -11,6 +11,7 @@ class CreateFolder extends FormRequest
      *
      * @return bool
      */
+    //authorize メソッドはリクエストの内容に基づいた権限チェックのために使用される。今回はリクエストを受け付けるためtrue
     public function authorize()
     {
         return true;
@@ -21,6 +22,8 @@ class CreateFolder extends FormRequest
      *
      * @return array
      */
+
+    //requiredで必須入力、max:20で最大文字20に指定
     public function rules()
     {
         return [
@@ -29,7 +32,8 @@ class CreateFolder extends FormRequest
     }
 
     public function attributes()
-    {
+    {   
+        //エラーメッセージの'title'をフォルダ名に変更
         return [
             'title' => 'フォルダ名',
         ];

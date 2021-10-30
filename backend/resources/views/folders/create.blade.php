@@ -7,17 +7,21 @@
         <nav class="panel panel-default">
           <div class="panel-heading">フォルダを追加する</div>
           <div class="panel-body">
+            <!-- ルール違反があるか確認 -->
             @if($errors->any())
               <div class="alert alert-danger">
+                <!-- ある際はforeachでエラーメッセージを列挙 エラーメッセージは日本語化済み -->
                 @foreach($errors->all() as $message)
                   <p>{{ $message }}</p>
                 @endforeach
               </div>
             @endif
             <form action="{{ route('folders.create') }}" method="post">
+              <!-- CSRFトークンにて脆弱性対策 -->
               @csrf
               <div class="form-group">
                 <label for="title">フォルダ名</label>
+                <!-- valueにold関数を使用することで、入力エラー後でも入力文字の値を復元 -->
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" />
               </div>
               <div class="text-right">

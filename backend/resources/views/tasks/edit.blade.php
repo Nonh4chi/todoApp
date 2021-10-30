@@ -25,12 +25,14 @@
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
+                <!-- valueにold関数を使用し、第二引数に$task->titleとすることで、編集前の値を出力 -->
                 <input type="text" class="form-control" name="title" id="title"
                        value="{{ old('title') ?? $task->title }}" />
               </div>
               <div class="form-group">
                 <label for="status">状態</label>
                 <select name="status" id="status" class="form-control">
+                  <!-- Task モデルで定義した配列定数STATUSをforeachでループしてoption 要素を出力 -->
                   @foreach(\App\Models\Task::STATUS as $key => $val)
                     <option
                         value="{{ $key }}"
@@ -43,6 +45,7 @@
               </div>
               <div class="form-group">
                 <label for="due_date">期限</label>
+                <!-- valueにold関数を使用し、第二引数に$task->formatted_due_dateとすることで、編集前の値を出力 -->
                 <input type="text" class="form-control" name="due_date" id="due_date"
                        value="{{ old('due_date') ?? $task->formatted_due_date }}" />
               </div>

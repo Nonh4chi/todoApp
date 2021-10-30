@@ -29,6 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    //会員登録後のリダイレクト処理
     protected $redirectTo = '/';
 
 
@@ -52,8 +53,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            //名前のバリデーション
             'name' => 'required|string|max:255',
+            //emailのバリデーション unique:usersはusersテーブルのemailカラムで使われていない値ではないといけないというルール
             'email' => 'required|string|email|max:255|unique:users',
+            //パスワードのバリデーション
             'password' => 'required|string|min:6|confirmed',
         ], [], [
             'name' => 'ユーザー名',

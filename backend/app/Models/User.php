@@ -44,7 +44,8 @@ class User extends Authenticatable
     ];
 
     public function folders()
-    {
+    {   
+        //hasManyメソッドにより、フォルダテーブルとタスクテーブルのリレーションをたどって、リストを取得
         return $this->hasMany('App\Models\Folder');
     }
 
@@ -53,25 +54,7 @@ class User extends Authenticatable
     //     Mail::to($this)->send(new ResetPassword($token));
     // }
 
-    // /**
-    //  * JWT の subject claim となる識別子を取得する
-    //  *
-    //  * @return mixed
-     
-    // public function getJWTIdentifier()
-    // {
-    //     return $this->getKey();
-    // }
 
-    
-    //  * キーバリュー値を返します, JWTに追加される custom claims を含む
-    //  *
-    //  * @return array
-    //  */
-    // public function getJWTCustomClaims()
-    // {
-    //     return [];
-    // }
      
 
 }

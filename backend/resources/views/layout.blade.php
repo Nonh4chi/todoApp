@@ -13,6 +13,7 @@
   <nav class="my-navbar">
     <a class="my-navbar-brand" href="/">ToDo App</a>
     <div class="my-navbar-control">
+    <!-- Authのcheckメソッドにてログインしているかを確認 -->
       @if(Auth::check())
         <span class="my-navbar-item">ようこそ, {{ Auth::user()->name }}さん</span>
         ｜
@@ -32,6 +33,7 @@
   @yield('content')
 </main>
     @if(Auth::check())
+    <!-- ログアウト -->
     <script>
         document.getElementById('logout').addEventListener('click', function(event) {
         event.preventDefault();

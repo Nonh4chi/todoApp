@@ -19,20 +19,30 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
+//認証機能を使用するものはミドルウェアを適用
 Route::group(['middleware' => 'auth'], function() {
+    //ホームページ
     Route::get('/', 'HomeController@index')->name('home');
 
+    //フォルダ作成ページ
     Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
     Route::post('/folders/create', 'FolderController@create');
     
     Route::group(['middleware' => 'can:view,folder'], function() {
+
+        //タスク一覧ページ {folder}には、index.bladeにてfoldersテーブルの各folderのIDが値として入る
         Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
 
+        //タスク作成ページ
         Route::get('/folders/{folder}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
         Route::post('/folders/{folder}/tasks/create', 'TaskController@create');
-
+        //タスク編集ページ
         Route::get('/folders/{folder}/tasks/{task}/edit', 'TaskController@showEditForm')->name('tasks.edit');
         Route::post('/folders/{folder}/tasks/{task}/edit', 'TaskController@edit');
+
+        //タスク削除ページ
+        Route::get('/folders/{folder}/tasks/{task}/delete', 'TaskController@showDeleteForm')->name('tasks.delete');
+        Route::post('/folders/{folder}/tasks/{task}/delete', 'TaskController@delete');
     });
 });
 

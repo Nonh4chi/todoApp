@@ -11,6 +11,7 @@ class CreateTask extends FormRequest
      *
      * @return bool
      */
+    //リクエストを受け付けるためtrue
     public function authorize()
     {
         return true;
@@ -21,6 +22,7 @@ class CreateTask extends FormRequest
      *
      * @return array
      */
+    //タイトル必須入力,最大100文字、due_dateを今日以降の未来日だけに指定
     public function rules()
     {
         return [
@@ -28,7 +30,7 @@ class CreateTask extends FormRequest
             'due_date' => 'required|date|after_or_equal:today',
         ];
     }
-
+    //エラーメッセージのtitleをタイトル,due_dateを期限日に変更
     public function attributes()
     {
         return [
@@ -37,6 +39,7 @@ class CreateTask extends FormRequest
         ];
     }
 
+    //messagesメソッドを使用して、個別の FormRequest クラスの内部でのみ有効なメッセージを定義
     public function messages()
     {
         return [

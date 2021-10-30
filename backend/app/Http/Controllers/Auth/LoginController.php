@@ -26,6 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
+    //ログイン後のリダイレクト処理
     protected $redirectTo = '/';
 
     /**

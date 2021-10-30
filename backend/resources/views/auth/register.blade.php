@@ -14,6 +14,7 @@
                 @endforeach
               </div>
             @endif
+            <!-- Auth;;routes()にてルーティング処理 -->
             <form action="{{ route('register') }}" method="POST">
               @csrf
               <div class="form-group">
@@ -30,6 +31,7 @@
               </div>
               <div class="form-group">
                 <label for="password-confirm">パスワード（確認）</label>
+                <!-- confirmedルールにより、xxxx_confirmationのxxxxと入力値が一致するかを検証してくれる-->
                 <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
               </div>
               <div class="text-right">

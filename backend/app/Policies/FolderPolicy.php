@@ -15,6 +15,7 @@ class FolderPolicy
      */
     public function view(User $user, Folder $folder)
     {
+        //ユーザーとフォルダが紐づいているときのみ許可
         return $user->id === $folder->user_id;
     }
 }

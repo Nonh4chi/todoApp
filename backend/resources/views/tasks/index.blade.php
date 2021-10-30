@@ -12,7 +12,12 @@
             </a>
           </div>
           <div class="list-group">
+          <!-- foreachでfolderのタイトルを繰り返し表示 -->
             @foreach($folders as $folder)
+              <!-- 
+                ルーティングにてタスク一覧ページを表示 'folder'にfolderのidを値とする 
+              　閲覧されているフォルダID($current_folder_id)とIDが合致する場合は、'active'というHTMLクラスを出力(選択表示)
+              -->
               <a
                   href="{{ route('tasks.index', ['folder' => $folder->id]) }}"
                   class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}"
@@ -28,6 +33,7 @@
           <div class="panel-heading">タスク</div>
           <div class="panel-body">
             <div class="text-right">
+              <!-- タスク追加画面へのボタン -->
               <a href="{{ route('tasks.create', ['folder' => $current_folder_id]) }}" class="btn btn-default btn-block">
                 タスクを追加する
               </a>
@@ -43,6 +49,7 @@
             </tr>
             </thead>
             <tbody>
+            <!-- foreachでtaskのタイトルを繰り返し表示 -->
             @foreach($tasks as $task)
               <tr>
                 <td>{{ $task->title }}</td>
@@ -50,7 +57,9 @@
                   <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
                 </td>
                 <td>{{ $task->formatted_due_date }}</td>
+                <!-- 編集ページへのリンク  -->
                 <td><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">編集</a></td>
+                <td><a href="{{ route('tasks.delete', ['folder' => $task->folder_id, 'task' => $task->id]) }}">削除</a></td>
               </tr>
             @endforeach
             </tbody>

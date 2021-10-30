@@ -10,6 +10,7 @@ class Folder extends Model
     //use HasFactory;
     public function tasks()
     {
+        //hasManyメソッドにより、フォルダテーブルとタスクテーブルのリレーションをたどって、リストを取得
         return $this->hasMany('App\Models\Task');
     }
 }
